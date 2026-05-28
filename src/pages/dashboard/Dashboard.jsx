@@ -2,7 +2,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const GameCards = () => {
+const dashboard = () => {
   const games = [
     { name: 'Popular', icon: '12' },
     { name: 'Lottery', icon: '80' },
@@ -42,4 +42,4 @@ const GameCards = () => {
   );
 };
 
-export default GameCards;
+export default dashboard;

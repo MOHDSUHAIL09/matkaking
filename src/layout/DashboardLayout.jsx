@@ -1,5 +1,5 @@
 // src/layout/DashboardLayout.jsx
-import Dashboard from '../Pages/dashboard/Dashboard';
+import Dashboard from '../pages/dashboard/Dashboard';
 
 
 function DashboardLayout() {
