@@ -1,7 +1,6 @@
-// src/components/dashboard/common/GameCards.jsx
 import React from 'react';
 
-const Dashboard = () => 
+const Dashboard = () => {  
   const games = [
     { name: 'Popular', value: '12',  color: '#ff4757' },
     { name: 'Lottery', value: '80',  color: '#2ed573' },
@@ -47,4 +46,4 @@ const Dashboard = () =>
   );
 };
 
-export default Dashboard;
+export default Dashboard ;
