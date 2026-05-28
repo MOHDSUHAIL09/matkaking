@@ -1,0 +1,47 @@
+/* src/components/dashboard/common/Header.css */
+.header-nav {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+}
+
+.brand-logo {
+  color: #0369a1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.register-btn {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn {
+  background: #0ea5e9;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #0284c7;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .brand-logo {
+    font-size: 1.4rem;
+  }
+  
+  .register-btn, .login-btn {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
