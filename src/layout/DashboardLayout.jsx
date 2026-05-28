@@ -1,13 +1,14 @@
 // src/layout/DashboardLayout.jsx
-import Dashboard from '../Pages/dashboard/Dashboard';
+
 import Navbar from '../components/dashboard/common/Navbar';
+import Dashboard from '../pages/dashboard/Dashboard';
 
 function DashboardLayout() {
   return (    
     <>
     <div className='game-container'>
       <div className="main-wrapper">  
-        <Dashboard />
+        <Dashboard/>
       </div>
       <Navbar/>
       </div>

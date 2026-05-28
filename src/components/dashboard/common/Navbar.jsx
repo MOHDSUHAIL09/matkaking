@@ -33,7 +33,7 @@ const Navbar = () => {
           {/* GET ₹1700 */}
           <div className="nav-item special-item" onClick={() => console.log('Clicked: GET ₹1700')}>
             <div className="special-circle">
-              <span className="special-icon">💰</span>
+              <span className="special-icon">+</span>
             </div>
             <div className="special-label">
               GET ₹1700
