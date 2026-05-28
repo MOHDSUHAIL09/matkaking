@@ -1,6 +1,5 @@
 // src/components/dashboard/common/GameCards.jsx
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const dashboard = () => {
   const games = [
