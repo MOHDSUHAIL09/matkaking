@@ -8,3 +8,16 @@
 .dashboard-container {
 padding: 10px;
 }
+/* Responsive container */
+.matka-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.matka-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

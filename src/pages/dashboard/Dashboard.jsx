@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react';
+import matka1 from '../../assets/matka-1.png'
 
 const Dashboard = () => {  
   const [bets, setBets] = useState([]);
@@ -181,6 +182,12 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+
+<div className='matka-img'>
+<img src={matka1}/>
+</div>
+
 
 {/* Satta Matka - Numbers with Bet Input */}
 {/* Satta Matka - Numbers with Bet Input */}
