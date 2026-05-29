@@ -7,7 +7,7 @@ import './Header.css';
 const Header = () => {
   return (
     <>
-      {/* Top Header - BG678 Register Login */}
+      {/* Top Header - MatkaKing678 Register Login */}
       <nav className="navbar navbar-expand-lg shadow-sm border-bottom header-nav">
         <div className="container-fluid px-4">
           <a className="navbar-brand brand-logo" href="#">

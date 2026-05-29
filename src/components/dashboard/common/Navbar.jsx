@@ -26,7 +26,7 @@ const Navbar = () => {
               <FaRegShareFromSquare />
             </div>
             <div className="nav-label">
-              Promotion
+              Refers
             </div>
           </div>
 
@@ -36,7 +36,7 @@ const Navbar = () => {
               <span className="special-icon">+</span>
             </div>
             <div className="special-label">
-              GET ₹1700
+              
             </div>
           </div>
 
