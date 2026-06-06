@@ -3,6 +3,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import logo from "../../../assets/logo.png";  
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -15,8 +16,8 @@ const Header = () => {
             MatkaKing678
           </a>
           <div className="d-flex gap-2">
-            <button className="btn register-btn">Register</button>
-            <button className="btn login-btn">Log in</button>
+            <Link to="/Register"><button className="btn register-btn">Register</button></Link>
+            <Link to="/Login"><button className="btn login-btn">Log in</button></Link>
           </div>
         </div>
       </nav>
