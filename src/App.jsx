@@ -4,6 +4,8 @@ import DashboardLayout from './layout/DashboardLayout';
 import Header from './components/dashboard/common/Header';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
+import PlayGame from './pages/dashboard/playgame/PlayGame';
+import NumberGrid from './pages/dashboard/playgame/NumberGrid';
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
         <Route path="/*" element={<DashboardLayout />} />
         <Route path="/Register" element={<Signup />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="PlayGame" element={<PlayGame/>} />
+        <Route path="/NumberGrid" element={<NumberGrid/>} />
       </Routes>
     </div>
     </>

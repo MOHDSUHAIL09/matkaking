@@ -21,3 +21,52 @@ padding: 10px;
   height: auto;
   display: block;
 }
+
+.game-header {
+  background: #11998e;
+  color: #fff;
+  padding: 10px 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.header-left h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header-left p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.header-left span {
+  display: block;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.reset-btn {
+  border: 1px solid #fff;
+  background: transparent;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}

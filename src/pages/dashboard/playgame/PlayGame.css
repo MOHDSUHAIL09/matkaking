@@ -1,0 +1,259 @@
+.playgame-wrapper {
+  padding: 15px;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.top-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0e1d3a;
+  margin: 0;
+}
+
+.my-playgame-btn {
+  background: #f3a400;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.game-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  min-height: 90px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.active-card {
+  background: linear-gradient(
+    90deg,
+    #27aae1 0%,
+    #1687c7 100%
+  );
+}
+
+.closed-card {
+  background: #75839a;
+}
+
+.game-left h3 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.game-left p {
+  margin: 5px 0;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.icon {
+  font-size: 12px;
+}
+
+.result-icon {
+  color: #ff4d8d;
+}
+
+.play-btn {
+  background: #12a87c;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 115px;
+}
+
+.timeup-btn {
+  background: #ff5b5b;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: not-allowed;
+  min-width: 115px;
+}
+
+@media (max-width: 768px) {
+  .game-card {
+    padding: 15px;
+  }
+
+  .top-header h2 {
+    font-size: 24px;
+  }
+
+  .play-btn,
+  .timeup-btn {
+    min-width: 100px;
+    font-size: 13px;
+    padding: 10px 15px;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* numgrid */
+
+.number-grid-wrapper {
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  overflow: hidden;
+}
+
+/* Grid */
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  padding: 8px;
+}
+
+.number-card {
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.number-title {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #556070;
+
+  background: linear-gradient(
+    to bottom,
+    #f5f5f5,
+    #dfdfdf
+  );
+
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.number-input {
+  width: 100%;
+  height: 22px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 11px;
+  padding: 0;
+  background: #fff;
+}
+
+.number-input::-webkit-inner-spin-button,
+.number-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Bottom */
+
+.bottom-bar {
+  background: #2fd0c4;
+  padding: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-box {
+  font-size: 22px;
+  font-weight: 700;
+  color: #063e46;
+}
+
+.play-button {
+  border: none;
+  background: #00695c;
+  color: white;
+  min-width: 90px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.play-button:hover {
+  opacity: 0.9;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .number-grid {
+    gap: 3px;
+  }
+
+  .number-title {
+    font-size: 10px;
+    height: 20px;
+  }
+
+  .number-input {
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .total-box {
+    font-size: 18px;
+  }
+
+  .play-button {
+    min-width: 80px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: #2fd0c4;
+  padding: 12px 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+}
