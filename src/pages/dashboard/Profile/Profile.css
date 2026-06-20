@@ -1,0 +1,600 @@
+/* Profile.css - All classes have 'profile-' prefix */
+
+:root {
+  --profile-primary-green: #1a8d44;
+  --profile-bg-light: #f4f7f9;
+  --profile-text-gray: #777;
+  --profile-text-dark: #333;
+}
+
+.profile-main-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 30px;
+  background-color: var(--profile-bg-light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========== HEADER ========== */
+.profile-header-section {
+  background: linear-gradient(180deg, #1a8d44 0%, #2b9348 100%);
+  padding: 30px 20px 80px 20px;
+  color: white;
+}
+
+.profile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  object-fit: cover;
+}
+
+.profile-username {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.profile-vip-badge {
+  background: linear-gradient(90deg, #d4d4d4, #ffffff);
+  color: #333;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.profile-uid-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 3px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 8px 0;
+  font-size: 0.8rem;
+}
+
+.profile-copy-icon {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* ========== WALLET CARD ========== */
+.profile-wallet-card {
+  background: white;
+  margin: -50px 15px 15px 15px;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.profile-wallet-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.profile-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--profile-text-dark);
+  font-weight: 500;
+}
+
+.profile-badge-container {
+  position: relative;
+}
+
+.profile-red-dot {
+  position: absolute;
+  top: -2px;
+  right: -5px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 0.6rem;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.profile-balance-info {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+}
+
+.profile-balance-item .profile-label {
+  font-size: 0.75rem;
+  color: var(--profile-text-gray);
+  margin: 0;
+}
+
+.profile-balance-item .profile-amount {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 4px 0 0 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-refresh-icon {
+  color: #999;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ========== HISTORY GRID ========== */
+.profile-history-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 15px;
+}
+
+.profile-grid-card {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-grid-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-grid-icon.profile-blue {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.profile-grid-icon.profile-green {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.profile-grid-icon.profile-light-green {
+  background: #f1f8e9;
+  color: #8bc34a;
+}
+
+.profile-grid-icon.profile-orange {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.profile-grid-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.profile-grid-sub {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
+/* ========== LOGOUT BUTTON ========== */
+.profile-logout-btn {
+  width: calc(100% - 30px);
+  margin: 25px 15px;
+  padding: 14px;
+  border-radius: 30px;
+  border: 1.5px solid #ddd;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #444;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.profile-logout-btn:active {
+  background: #f0f0f0;
+  transform: scale(0.98);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 480px) {
+  .profile-header-section {
+    padding: 20px 15px 70px 15px;
+  }
+
+  .profile-avatar {
+    width: 55px;
+    height: 55px;
+  }
+
+  .profile-username {
+    font-size: 0.95rem;
+  }
+
+  .profile-wallet-card {
+    margin: -40px 10px 10px 10px;
+    padding: 15px;
+  }
+
+  .profile-history-grid {
+    gap: 8px;
+    margin: 10px;
+  }
+
+  .profile-grid-card {
+    padding: 10px;
+  }
+
+  .profile-grid-title {
+    font-size: 0.75rem;
+  }
+
+  .profile-grid-sub {
+    font-size: 0.6rem;
+  }
+
+  .profile-logout-btn {
+    width: calc(100% - 20px);
+    margin: 20px 10px;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .profile-action-item {
+    font-size: 0.7rem;
+  }
+}
+
+
+
+
+:root {
+  --dps-green: #1a8d44;
+  --dps-bg: #f5f7f9;
+  --dps-white: #ffffff;
+}
+
+.dps-main-container {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: var(--dps-bg);
+  min-height: 100vh;
+  padding-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.dps-header {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.dps-title { font-size: 1.1rem; margin: 0; font-weight: 500; }
+.dps-history-btn { font-size: 0.9rem; color: #666; }
+
+/* Balance Card */
+.dps-balance-card {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20, #4caf50);
+  margin: 15px;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.dps-balance-top { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; opacity: 0.9; }
+.dps-balance-amount { font-size: 1.8rem; font-weight: bold; margin: 10px 0; display: flex; align-items: center; gap: 10px; }
+.dps-refresh { font-size: 1.2rem; cursor: pointer; }
+.dps-card-footer { display: flex; justify-content: space-between; margin-top: 10px; }
+.dps-card-chip { width: 35px; height: 25px; background: rgba(255,255,255,0.2); border-radius: 4px; }
+.dps-card-dots { letter-spacing: 2px; font-size: 0.9rem; }
+
+/* Payment Grid */
+.dps-payment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0 15px;
+}
+.dps-method-item {
+  background: white;
+  padding: 12px 5px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  border: 1px solid #eee;
+}
+.dps-method-item.active-green { background: #1a8d44; color: white; border: none; }
+.dps-method-item img { width: 60%; margin-bottom: 5px; }
+.dps-method-item p { margin: 0; font-size: 0.75rem; font-weight: 500; }
+
+.dps-badge-red {
+  position: absolute;
+  top: 0; right: 0;
+  background: linear-gradient(to bottom, #ff4d4d, #b71c1c);
+  color: white;
+  font-size: 0.6rem;
+  padding: 2px 5px;
+  border-bottom-left-radius: 8px;
+  font-weight: bold;
+}
+
+/* Icons for methods */
+.dps-qr-placeholder { font-weight: bold; font-size: 1.2rem; color: #444; margin-bottom: 5px; }
+.dps-bg-icon { background: #1a8d44; color: white; width: 30px; height: 30px; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; }
+.dps-usdt-icon { background: #26a17b; color: white; width: 30px; height: 30px; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; }
+
+/* Section Box */
+.dps-section-box {
+  background: white;
+  margin: 15px;
+  border-radius: 12px;
+  padding: 15px;
+}
+.dps-section-header { display: flex; align-items: center; gap: 8px; font-weight: bold; margin-bottom: 12px; font-size: 0.95rem; }
+.dps-bolt-icon { color: #1a8d44; }
+
+.dps-safe-badge {
+  background: #e8f5e9;
+  color: #1a8d44;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #c8e6c9;
+  margin-bottom: 15px;
+}
+
+/* Channel Grid */
+.dps-channel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.dps-chan-item {
+  background: #eee;
+  padding: 12px;
+  border-radius: 8px;
+  position: relative;
+}
+.dps-chan-item.active { background: #1a8d44; color: white; }
+.dps-chan-name { margin: 0; font-weight: bold; font-size: 0.85rem; }
+.dps-chan-bal { margin: 3px 0 0 0; font-size: 0.7rem; opacity: 0.8; }
+
+.dps-award-info { margin-top: 15px; }
+.dps-award-info h4 { color: #ff5252; margin: 0 0 5px 0; font-size: 0.9rem; }
+.dps-award-info p { margin: 0; font-size: 0.8rem; color: #ff5252; font-weight: 500; }
+
+/* Amounts Grid */
+.dps-amount-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.dps-amt-item {
+  border: 1.5px solid #eee;
+  padding: 15px 5px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #555;
+}
+.dps-amt-item.selected { border-color: var(--dps-green); background: #1a8d44; color: white; }
+.dps-hot-tag { position: absolute; top: -10px; left: 0; background: orange; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 4px; }
+.dps-badge-red.small { font-size: 0.5rem; padding: 1px 3px; border-radius: 0 0 0 5px; }
+
+/* Calculation Box */
+.dps-calc-box {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+.dps-you-get {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #1a8d44, #4caf50);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px 15px 15px 8px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.dps-progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.8rem; color: #666; }
+.dps-calc-label { width: 80px; }
+.dps-bar-bg { flex: 1; height: 4px; background: #ddd; border-radius: 10px; position: relative; }
+.dps-bar-fill { height: 100%; background: #999; border-radius: 10px; }
+.dps-bar-fill.bonus { background: #4caf50; }
+.dps-calc-val { width: 60px; text-align: right; font-weight: 500; }
+.dps-calc-val.green { color: #4caf50; }
+
+/* Input and Button */
+.dps-input-wrapper {
+  background: #f1f8e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.dps-input-divider { color: #ccc; }
+.dps-input-wrapper input { border: none; background: none; outline: none; font-size: 1rem; font-weight: bold; width: 100%; color: #333; }
+.dps-clear-icon { color: #bbb; cursor: pointer; }
+
+.dps-deposit-btn {
+  width: 100%;
+  background: #1a8d44;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(26, 141, 68, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- QR Display Section Styling --- */
+
+/* Main Container: Dashed border aur subtle shadow se ye highlight hota hai */
+.dps-qr-display-box {
+  background: #ffffff;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 2px dashed #1a8d44; /* Green dashed border for "Pay Area" feel */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+  animation: dpsPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bounce animation */
+}
+
+/* Header: Title aur Close button alignment */
+.dps-qr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dps-qr-header span {
+  font-weight: 700;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Close Button (X) */
+.dps-close-qr {
+  background: #f5f5f5;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #999;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dps-close-qr:hover {
+  background: #ffeded;
+  color: #ff4d4d;
+}
+
+/* QR Canvas Wrapper: Scanning ke liye white space zaruri hai */
+.dps-qr-wrapper {
+  background: #f9f9f9; /* Light contrast from main box */
+  padding: 15px;
+  display: inline-block;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 10px;
+}
+
+/* QRCode Canvas styling (overriding default) */
+.dps-qr-wrapper canvas {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* Animation Keyframes: Jab QR open ho toh scale ho kar aaye */
+@keyframes dpsPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Extra: Instruction text jo aapne pehle maangi thi */
+.dps-qr-info {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.dps-qr-info b {
+  color: #1a8d44;
+  font-size: 1rem;
+}
+
+/* Click feedback for Methods Grid to show selection */
+.dps-active-method {
+  border: 2px solid #1a8d44 !important;
+  background: #f1f8e9 !important;
+  transform: scale(1.02);
+}

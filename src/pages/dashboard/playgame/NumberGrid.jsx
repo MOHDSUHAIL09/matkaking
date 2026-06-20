@@ -1,3 +1,4 @@
+// NumberGrid.jsx - Kuch change nahi
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,15 +10,12 @@ const NumberGrid = () => {
   const { gameName } = location.state || { gameName: "DISAWER" };
   
   const numbers = [
-    ...Array.from(
-      { length: 99 },
-      (_, i) => String(i + 1).padStart(2, "0")
-    ),
+    ...Array.from({ length: 99 }, (_, i) => String(i + 1).padStart(2, "0")),
     "00",
   ];
 
   const [betAmounts, setBetAmounts] = useState({});
-  const [balance, setBalance] = useState(10000); // Example balance
+  const [balance, setBalance] = useState(10000);
 
   const handleAmountChange = (number, value) => {
     setBetAmounts((prev) => ({
@@ -62,23 +60,19 @@ const NumberGrid = () => {
 
   return (
     <div className="number-grid-wrapper">
-      {/* Header - Dynamic as per clicked game */}
+      {/* Header */}
       <div className="game-header">
         <div className="header-left">
           <FaArrowLeft className="back-icon" onClick={goBack} />
-          
           <div>
             <h3>{gameName}</h3>
             <p>Balance : ₹ {balance.toFixed(2)}</p>
           </div>
         </div>
-
-
-          <button type="button" className="reset-btn" onClick={handleReset}>
-             Bet History
-          </button>
-        </div>
-
+        <button type="button" className="reset-btn" onClick={handleReset}>
+          Bet History
+        </button>
+      </div>
 
       {/* Grid */}
       <div className="number-grid">
@@ -97,13 +91,13 @@ const NumberGrid = () => {
         ))}
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Bar - Fixed position */}
       <div className="bottom-bar">
         <div className="total-box">
           Total: ₹ {totalAmount}/-
         </div>
         <button className="play-button" onClick={handlePlay}>
-           Play
+          Play
         </button>
       </div>
     </div>

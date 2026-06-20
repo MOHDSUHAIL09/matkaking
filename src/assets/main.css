@@ -1,4 +1,4 @@
-.wallet-card {
+/* .wallet-card {
   position: relative;
   overflow: hidden;
 
@@ -120,4 +120,248 @@
   color: #ffffff;
   font-size: 15px;
   font-weight: 700;
+} */
+
+
+
+
+
+
+
+:root {
+  --primary-green: #1a8d44;
+  --secondary-green: #2e7d32;
+  --header-yellow: #f1c40f;
+  --btn-blue: #2196f3;
+  --bg-light: #f5f7f9;
+  --text-red: #e74c3c;
+}
+
+body {
+  background-color: var(--bg-light);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-container {
+  max-width: 500px; /* Mobile View for Desktop */
+  margin: 0 auto;
+  padding: 15px;
+  padding-bottom: 100px;
+}
+
+/* --- Wallet Card Styling --- */
+.wallet-card {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32, #4caf50);
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+}
+
+.wallet-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.wallet-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.wallet-id {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #4efc4e;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #4efc4e;
+}
+
+.wallet-balance {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.wallet-text {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.wallet-circle {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+/* --- Notice Bar Styling --- */
+.notice-bar {
+  background: white;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 15px;
+}
+
+.notice-icon {
+  background: #ffeded;
+  color: #ff4d4d;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.notice-text {
+  font-size: 0.9rem;
+  color: #444;
+  font-weight: 500;
+}
+
+/* --- Matka Image Banner --- */
+.matka-img-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.main-banner {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- SATTA CHART SECTION STYLING --- */
+.chart-section {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.chart-main-title {
+  background-color: var(--primary-green);
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* For mobile scroll */
+}
+
+.satta-chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+/* Header */
+.header-row {
+  background-color: var(--header-yellow);
+}
+
+.satta-chart-table th {
+  padding: 12px 8px;
+  border: 1px solid #ddd;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.date-col {
+  color: #d35400; /* Dark Orange for header DATE text */
+}
+
+/* Body */
+.satta-chart-table td {
+  padding: 10px 5px;
+  border: 1px solid #eee;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.date-cell {
+  color: var(--text-red) !important;
+  font-weight: 800;
+}
+
+.satta-chart-table tbody tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+/* Hover effect */
+.satta-chart-table tbody tr:hover {
+  background-color: #f1f8e9;
+}
+
+/* Navigation Buttons */
+.chart-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #f9f9f9;
+}
+
+.nav-btn-blue {
+  background-color: var(--btn-blue);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  width: 48%;
+  justify-content: center;
+}
+
+.nav-btn-blue:active {
+  transform: scale(0.95);
+  background-color: #1976d2;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 400px) {
+  .satta-chart-table td {
+    font-size: 0.85rem;
+    padding: 8px 4px;
+  }
+  .chart-main-title {
+    font-size: 0.8rem;
+  }
 }

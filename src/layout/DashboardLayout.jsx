@@ -1,18 +1,15 @@
 // src/layout/DashboardLayout.jsx
-
+import { Outlet } from 'react-router-dom';
 import Navbar from '../components/dashboard/common/Navbar';
-import Dashboard from '../pages/dashboard/Dashboard';
 
 function DashboardLayout() {
   return (    
-    <>
-    <div className='game-container'>
+    <div className='dashboard-layout'>
       <div className="main-wrapper">  
-        <Dashboard/>
+        <Outlet /> {/* Child components yahan render honge */}
       </div>
-      <Navbar/>
-      </div>
-    </>
+      <Navbar/> {/* Navbar bottom par fix rahega */}
+    </div>
   );
 }
 
