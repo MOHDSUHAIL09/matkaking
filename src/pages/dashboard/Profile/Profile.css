@@ -507,7 +507,6 @@
   margin: 15px;
   padding: 20px;
   border-radius: 16px;
-  border: 2px dashed #1a8d44; /* Green dashed border for "Pay Area" feel */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   text-align: center;
   position: relative;
