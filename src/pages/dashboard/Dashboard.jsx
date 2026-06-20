@@ -102,7 +102,17 @@ const Dashboard = () => {
         <div className="wallet-text">Available balance</div>
       </div>
 
-      {/* Current Date & Time Display */}
+      <div className="notice-bar">
+        <div className="notice-icon"><FaBullhorn /></div>
+        <marquee className="notice-text">किसी भी समस्या के लिए WhatsApp: 6395280490 पर संपर्क करें</marquee>
+      </div>
+
+      <div className='matka-img-container'>
+        <img src={matka1} alt="Main Banner" className="main-banner" />
+      </div>
+
+
+            {/* Current Date & Time Display */}
       <div className="current-datetime-bar">
         <div className="datetime-left">
           <span className="date-display">📅 {currentTime.toLocaleDateString('en-IN', { 
@@ -114,15 +124,6 @@ const Dashboard = () => {
         <div className="datetime-right">
           <span className="time-display">🕐 {getCurrentTimeDisplay()}</span>
         </div>
-      </div>
-
-      <div className="notice-bar">
-        <div className="notice-icon"><FaBullhorn /></div>
-        <marquee className="notice-text">किसी भी समस्या के लिए WhatsApp: 6395280490 पर संपर्क करें</marquee>
-      </div>
-
-      <div className='matka-img-container'>
-        <img src={matka1} alt="Main Banner" className="main-banner" />
       </div>
 
       {/* --- SATTA KING CHART SECTION --- */}

@@ -365,3 +365,121 @@ body {
     font-size: 0.8rem;
   }
 }
+
+
+
+
+
+
+/* Current Date & Time Bar */
+.current-datetime-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  background: linear-gradient(135deg, #1a8d44, #2b9348);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(26, 141, 68, 0.3);
+  animation: slideDown 0.5s ease;
+}
+
+.datetime-left,
+.datetime-right {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-display,
+.time-display {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.date-display {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.time-display {
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  animation: pulse 1s infinite;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .current-datetime-bar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 12px;
+    margin: 0 8px 8px 8px;
+    border-radius: 10px;
+  }
+  
+  .datetime-left,
+  .datetime-right {
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .date-display {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+  
+  .time-display {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .current-datetime-bar {
+    padding: 6px 10px;
+    margin: 0 6px 6px 6px;
+    border-radius: 8px;
+  }
+  
+  .datetime-left,
+  .datetime-right {
+    font-size: 10px;
+  }
+  
+  .date-display {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+  
+  .time-display {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+}
