@@ -51,7 +51,7 @@ const Deposit = () => {
       // Account number se PhonePe QR
       return `upi://pay?pa=${ACCOUNT_NUMBER}&am=${amt}&cu=INR`;
     }
-    
+
     if (selectedMethod === 'PayTm') {
       // Account number se PayTm QR
      return `upi://pay?pa=${ACCOUNT_NUMBER}&am=${amt}&cu=INR`;

@@ -1,93 +1,110 @@
 ﻿import React, { useState, useEffect } from 'react';
 import '../../assets/main.css';
 import matka1 from '../../assets/matka-1.png';
-import { FaBullhorn, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaBullhorn, FaChevronLeft, FaChevronRight, FaTrophy } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState('');
-  const [currentDate, setCurrentDate] = useState('');
   const [chartData, setChartData] = useState([]);
 
-  // Har 10 second mein time update
+  const gameSettings = {
+    kerla: "09:00 AM",
+    headrabad: "12:00 PM",
+    ahmdabad: "03:00 PM",
+    goa: "06:00 PM",
+    mumbai: "09:00 PM",
+    kolkata: "12:00 AM",
+  };
+
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(now);
       setCurrentMonth(now.toLocaleString('default', { month: 'long', year: 'numeric' }));
-      setCurrentDate(now.getDate().toString().padStart(2, '0'));
     };
-
     updateTime();
     const timer = setInterval(updateTime, 1000);
     return () => clearInterval(timer);
   }, []);
 
-  // Generate data sirf aaj tak ki dates ke liye
+  const parseTimeToDate = (timeStr) => {
+    const [time, period] = timeStr.split(" ");
+    let [hour, minute] = time.split(":").map(Number);
+    if (period === "PM" && hour !== 12) hour += 12;
+    if (period === "AM" && hour === 12) hour = 0;
+    const date = new Date();
+    date.setHours(hour, minute, 0, 0);
+    return date;
+  };
+
   useEffect(() => {
-    const generateData = () => {
+    const fetchOrGenerateResults = () => {
       const now = new Date();
       const today = now.getDate();
-      const month = now.getMonth();
-      const year = now.getFullYear();
+      const monthYear = `${now.getMonth()}-${now.getFullYear()}`;
+      const savedData = JSON.parse(localStorage.getItem(`sattaResults_${monthYear}`) || "[]");
+      
+      let finalData = [...savedData];
 
-      // Get days in current month
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      const data = [];
-      // Sirf 1 se lekar aaj tak ki dates
-      for (let i = 1; i <= today; i++) {
-        const dateStr = i.toString().padStart(2, '0');
-        data.push({
-          date: dateStr,
-          dswr: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
-          frbd: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
-          gzbd: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
-          gali: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
-        });
+      if (finalData.length < today) {
+        for (let i = finalData.length + 1; i <= today; i++) {
+          finalData.push({
+            date: i.toString().padStart(2, '0'),
+            kerla: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
+            headrabad: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
+            ahmdabad: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
+            goa: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
+            mumbai: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
+            kolkata: Math.floor(Math.random() * 100).toString().padStart(2, '0'),
+          });
+        }
+        localStorage.setItem(`sattaResults_${monthYear}`, JSON.stringify(finalData));
       }
-      setChartData(data);
+      setChartData(finalData);
     };
+    fetchOrGenerateResults();
+  }, [currentTime.getDate()]);
 
-    generateData();
-  }, [currentDate]); // Jab date change ho (midnight ke baad)
+  // 🔥 LATEST RESULT LOGIC
+  const getLatestLiveResult = () => {
+    const todayData = chartData.find(item => parseInt(item.date) === currentTime.getDate());
+    if (!todayData) return null;
 
-  // Game Result Times (24-hour format)
-  const resultTimes = {
-    dswr: { h: 5, m: 20 },   // 05:20 AM
-    frbd: { h: 18, m: 10 },  // 06:10 PM
-    gzbd: { h: 21, m: 30 },  // 09:30 PM
-    gali: { h: 23, m: 30 },  // 11:30 PM
-  };
+    let latest = null;
+    let lastTime = -1;
 
-  // Function to check if result should be shown
-  const shouldShowResult = (day, gameKey) => {
-    const today = parseInt(currentDate);
-    const targetDay = parseInt(day);
-
-    // 1. Agar date purani hai (past days), toh hamesha dikhao
-    if (targetDay < today) return true;
-
-    // 2. Agar aaj ki hi date hai, toh time check karo
-    if (targetDay === today) {
-      const timeLimit = resultTimes[gameKey];
-      const checkTime = new Date();
-      checkTime.setHours(timeLimit.h, timeLimit.m, 0);
-      return currentTime >= checkTime;
-    }
-
-    // 3. Agar future ki date hai toh 'XX' dikhao (but future dates nahi hain data mein)
-    return false;
-  };
-
-  // Get current time display
-  const getCurrentTimeDisplay = () => {
-    return currentTime.toLocaleTimeString('en-IN', { 
-      hour: '2-digit', 
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true 
+    Object.entries(gameSettings).forEach(([key, timeStr]) => {
+      const resTime = parseTimeToDate(timeStr);
+      // Agar ye time nikal chuka hai, toh ye "Live" result ho sakta hai
+      if (currentTime >= resTime) {
+        if (resTime.getTime() > lastTime) {
+          lastTime = resTime.getTime();
+          latest = { name: key.toUpperCase(), number: todayData[key] };
+        }
+      }
     });
+
+    return latest;
+  };
+
+  const latestResult = getLatestLiveResult();
+
+  const shouldShowResult = (dateStr, gameKey) => {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const itemDate = new Date(); itemDate.setDate(parseInt(dateStr)); itemDate.setHours(0,0,0,0);
+
+    if (itemDate < today) return true;
+    if (itemDate > today) return false;
+
+    const resultTimeStr = gameSettings[gameKey];
+    const resultTime = parseTimeToDate(resultTimeStr);
+
+    if (resultTimeStr === "12:00 AM") {
+      const nextDay = new Date(today); nextDay.setDate(nextDay.getDate() + 1);
+      return new Date() >= nextDay;
+    }
+    return new Date() >= resultTime;
   };
 
   return (
@@ -107,74 +124,62 @@ const Dashboard = () => {
         <marquee className="notice-text">किसी भी समस्या के लिए WhatsApp: 6395280490 पर संपर्क करें</marquee>
       </div>
 
+      {/* 🔥 MATKA BANNER WITH LIVE RESULT OVERLAY */}
       <div className='matka-img-container'>
         <img src={matka1} alt="Main Banner" className="main-banner" />
+        
+        {/* Result Overlay Card */}
+        <div className="live-result-overlay">
+           <div className="result-card-inner">
+              <p className="live-tag">🔴 LIVE RESULT</p>
+              <h2 className="live-game-name">{latestResult ? latestResult.name : "WAITING..."}</h2>
+              <div className="live-number-circle">
+                <div className='pt-2'>
+                {latestResult ? latestResult.number : "XX"}
+                </div>
+              </div>
+           </div>
+        </div>
       </div>
 
-
-            {/* Current Date & Time Display */}
       <div className="current-datetime-bar">
         <div className="datetime-left">
-          <span className="date-display">📅 {currentTime.toLocaleDateString('en-IN', { 
-            day: '2-digit', 
-            month: 'short', 
-            year: 'numeric' 
-          })}</span>
+          <span>📅 {currentTime.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
         </div>
         <div className="datetime-right">
-          <span className="time-display">🕐 {getCurrentTimeDisplay()}</span>
+          <span>🕐 {currentTime.toLocaleTimeString()}</span>
         </div>
       </div>
 
-      {/* --- SATTA KING CHART SECTION --- */}
       <div className="satta-chart-section">
-        <div className="chart-header-main">
-          Monthly Satta King Chart - {currentMonth}
-          <span className="days-count">({chartData.length} days)</span>
-        </div>
-        
+        <div className="chart-header-main">Monthly Satta King Chart - {currentMonth}</div>
         <div className="chart-table-wrapper">
           <table className="satta-table">
             <thead>
               <tr>
                 <th className="th-date">DATE</th>
-                <th>DSWR</th>
-                <th>FRBD</th>
-                <th>GZBD</th>
-                <th>GALI</th>
+                <th>KERLA</th>
+                <th>HEADRABAD</th>
+                <th>AHMDABAD</th>
+                <th>GOA</th>
+                <th>MUMBAI</th>
+                <th>KOLKATA</th>
               </tr>
             </thead>
             <tbody>
-              {chartData.map((item, index) => {
-                const isToday = item.date === currentDate;
-                return (
-                  <tr key={index} className={isToday ? 'today-row' : ''}>
-                    <td className="td-date">
-                      {item.date}
-       
-                    </td>
-                    <td className={isToday ? 'today-result' : ''}>
-                      {shouldShowResult(item.date, 'dswr') ? item.dswr : 'XX'}
-                    </td>
-                    <td className={isToday ? 'today-result' : ''}>
-                      {shouldShowResult(item.date, 'frbd') ? item.frbd : 'XX'}
-                    </td>
-                    <td className={isToday ? 'today-result' : ''}>
-                      {shouldShowResult(item.date, 'gzbd') ? item.gzbd : 'XX'}
-                    </td>
-                    <td className={isToday ? 'today-result' : ''}>
-                      {shouldShowResult(item.date, 'gali') ? item.gali : 'XX'}
-                    </td>
-                  </tr>
-                );
-              })}
+              {chartData.map((item, index) => (
+                <tr key={index} className={parseInt(item.date) === currentTime.getDate() ? 'today-row' : ''}>
+                  <td className="td-date">{item.date}</td>
+                  <td>{shouldShowResult(item.date, 'kerla') ? item.kerla : 'XX'}</td>
+                  <td>{shouldShowResult(item.date, 'headrabad') ? item.headrabad : 'XX'}</td>
+                  <td>{shouldShowResult(item.date, 'ahmdabad') ? item.ahmdabad : 'XX'}</td>
+                  <td>{shouldShowResult(item.date, 'goa') ? item.goa : 'XX'}</td>
+                  <td>{shouldShowResult(item.date, 'mumbai') ? item.mumbai : 'XX'}</td>
+                  <td>{shouldShowResult(item.date, 'kolkata') ? item.kolkata : 'XX'}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="month-nav-row">
-          <button className="nav-btn"><FaChevronLeft /> Previous</button>
-          <button className="nav-btn">Next <FaChevronRight /></button>
         </div>
       </div>
     </div>

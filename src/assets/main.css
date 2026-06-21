@@ -482,3 +482,57 @@ body {
     padding: 2px 8px;
   }
 }
+
+
+
+
+
+.matka-img-container {
+  position: relative; /* Base for overlay */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.main-banner {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+}
+
+/* 🔥 Overlay Style */
+.live-result-overlay {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center mein lane ke liye */
+  text-align: center;
+  min-width: 180px;
+}
+
+.live-tag {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 10px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.live-game-name {
+  color: #12938c;
+  margin: 5px 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.live-number-circle {
+  background: #12938c;
+  color: white;
+  width: 90px;
+  height: 90px;
+  line-height: 70px;
+  border-radius: 50%;
+  font-size: 35px;
+  font-weight: bold;
+  margin: 10px auto;
+  box-shadow: 0 5px 15px rgba(18, 147, 140, 0.4);
+}

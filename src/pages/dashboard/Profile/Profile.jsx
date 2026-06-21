@@ -1,12 +1,10 @@
-import React from 'react';
+
 import './Profile.css';
 import { 
   IoWallet, IoDownload, IoCloudUpload, IoDocumentText, 
-  IoBarChart, IoSettingsSharp, IoInformationCircle 
 } from "react-icons/io5";
 import { 
-  FaTrophy, FaEnvelope, FaShieldAlt, FaBell, 
-  FaGift, FaHeadset, FaQuestionCircle, FaChevronRight, FaRegCopy 
+  FaTrophy, FaRegCopy 
 } from "react-icons/fa";
 import { MdHistory, MdLogout, MdOutlineRefresh } from "react-icons/md";
 import { Link } from 'react-router-dom';
@@ -43,10 +41,10 @@ const Profile = () => {
       {/* Wallet Card */}
       <div className="profile-wallet-card">
         <div className="profile-wallet-actions">
-          <div className="profile-action-item">
+          {/* <div className="profile-action-item">
             <IoWallet size={28} color="#4caf50"/>
             <span>Wallet</span>
-          </div>
+          </div> */}
             <Link to="/Deposit">
           <div className="profile-action-item">        
             <IoDownload size={28} color="#ff9800" />         

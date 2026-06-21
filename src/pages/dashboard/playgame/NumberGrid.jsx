@@ -1,13 +1,12 @@
-// NumberGrid.jsx - Kuch change nahi
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./PlayGame.css";
+import "./PlayGame.css"; // Iska CSS niche diya hai
 
 const NumberGrid = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { gameName } = location.state || { gameName: "DISAWER" };
+  const { gameName } = location.state || { gameName: "MUMBAI" };
   
   const numbers = [
     ...Array.from({ length: 99 }, (_, i) => String(i + 1).padStart(2, "0")),
@@ -15,9 +14,15 @@ const NumberGrid = () => {
   ];
 
   const [betAmounts, setBetAmounts] = useState({});
-  const [balance, setBalance] = useState(10000);
+  
+  // Balance ko LocalStorage se load karna
+  const [balance, setBalance] = useState(() => {
+    const savedBalance = localStorage.getItem("userBalance");
+    return savedBalance ? parseFloat(savedBalance) : 10000;
+  });
 
   const handleAmountChange = (number, value) => {
+    if (value < 0) return;
     setBetAmounts((prev) => ({
       ...prev,
       [number]: value,
@@ -34,12 +39,13 @@ const NumberGrid = () => {
   );
 
   const handlePlay = () => {
-    const selectedBets = Object.entries(betAmounts).filter(
-      ([, amount]) => Number(amount) > 0
-    );
+    // 1. Filter out only those numbers where amount is entered
+    const selectedBets = Object.entries(betAmounts)
+      .filter(([_, amount]) => Number(amount) > 0)
+      .map(([num, amt]) => ({ number: num, amount: Number(amt) }));
 
     if (selectedBets.length === 0) {
-      alert("Please enter at least one amount");
+      alert("Bhai, pehle kisi number par amount daalo!");
       return;
     }
 
@@ -48,33 +54,53 @@ const NumberGrid = () => {
       return;
     }
 
-    console.log(selectedBets);
-    alert(`Total Bet Amount ₹${totalAmount}`);
-    setBalance(balance - totalAmount);
-    setBetAmounts({});
-  };
+    // --- LOCAL STORAGE LOGIC ---
+    
+    // Naya Bet Data
+    const newBetRecord = {
+      id: Date.now(),
+      gameName: gameName,
+      totalAmount: totalAmount,
+      bets: selectedBets, // Saare numbers aur amounts
+      timestamp: new Date().toLocaleString(),
+      status: "Pending"
+    };
 
-  const goBack = () => {
-    navigate(-1);
+    // Purani history nikalna aur naya add karna
+    const existingHistory = JSON.parse(localStorage.getItem("betHistory") || "[]");
+    const updatedHistory = [newBetRecord, ...existingHistory];
+    
+    // Save to LocalStorage
+    localStorage.setItem("betHistory", JSON.stringify(updatedHistory));
+
+    // Balance update aur save
+    const newBalance = balance - totalAmount;
+    setBalance(newBalance);
+    localStorage.setItem("userBalance", newBalance.toString());
+
+    alert(`✅ Bet Lag Gayi!\nGame: ${gameName}\nTotal: ₹${totalAmount}`);
+    
+    // Reset inputs
+    setBetAmounts({});
   };
 
   return (
     <div className="number-grid-wrapper">
-      {/* Header */}
+      {/* Exact Style Header */}
       <div className="game-header">
         <div className="header-left">
-          <FaArrowLeft className="back-icon" onClick={goBack} />
-          <div>
+          <FaArrowLeft className="back-icon" onClick={() => navigate(-1)} />
+          <div className="title-info">
             <h3>{gameName}</h3>
             <p>Balance : ₹ {balance.toFixed(2)}</p>
           </div>
         </div>
-        <button type="button" className="reset-btn" onClick={handleReset}>
+        <button type="button" className="bet-history-top-btn">
           Bet History
         </button>
       </div>
 
-      {/* Grid */}
+      {/* Grid Layout - 10 Columns */}
       <div className="number-grid">
         {numbers.map((num) => (
           <div key={num} className="number-card">
@@ -84,14 +110,13 @@ const NumberGrid = () => {
               className="number-input"
               value={betAmounts[num] || ""}
               onChange={(e) => handleAmountChange(num, e.target.value)}
-              min="1"
               placeholder="0"
             />
           </div>
         ))}
       </div>
 
-      {/* Bottom Bar - Fixed position */}
+      {/* Fixed Bottom Bar */}
       <div className="bottom-bar">
         <div className="total-box">
           Total: ₹ {totalAmount}/-
