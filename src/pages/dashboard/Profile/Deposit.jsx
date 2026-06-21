@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react'; 
 import { 
   FaChevronLeft, FaRupeeSign, FaBolt, 
-  FaRegTimesCircle, FaCheckCircle, FaRegCopy 
+  FaRegTimesCircle, FaCheckCircle, 
 } from "react-icons/fa";
 import { MdOutlineRefresh } from "react-icons/md";
 import { BsWallet2 } from "react-icons/bs";
@@ -10,13 +10,16 @@ import { Link } from 'react-router-dom';
 
 const Deposit = () => {
   // States
-  const [selectedAmountLabel, setSelectedAmountLabel] = useState('300'); // Holds '300', '1K' etc.
+  const [selectedAmountLabel, setSelectedAmountLabel] = useState('300');
   const [customAmount, setCustomAmount] = useState('');
   const [selectedMethod, setSelectedMethod] = useState(null);
 
+  // Sirf account number - direct hardcoded (jaise image mein hai)
+  const ACCOUNT_NUMBER = "julfakarali7648@ybl";
+
   // Amount options configuration
   const amountOptions = [
-    { label: '200', value: 200 },
+    { label: '1', value: 1 },
     { label: '300', value: 300 },
     { label: '500', value: 500 },
     { label: '1K', value: 1000 },
@@ -40,12 +43,25 @@ const Deposit = () => {
   const currentBonus = calculateBonus(currentNumericValue);
   const currentTotal = calculateTotal(currentNumericValue);
 
-  // QR Data Generator
+  // Generate QR Data - Sirf Account Number se
   const getQRData = () => {
-    const amt = currentNumericValue;
-    if (selectedMethod === 'PhonePe') return `upi://pay?pa=phonepe@ybl&pn=Deposit&am=${amt}`;
-    if (selectedMethod === 'PayTm') return `upi://pay?pa=paytm@paytm&pn=Deposit&am=${amt}`;
-    if (selectedMethod === 'USDT') return `T-ExampleWalletAddress123456789`;
+    const amt = currentNumericValue || 1;
+    
+    if (selectedMethod === 'PhonePe') {
+      // Account number se PhonePe QR
+      return `upi://pay?pa=${ACCOUNT_NUMBER}&am=${amt}&cu=INR`;
+    }
+    
+    if (selectedMethod === 'PayTm') {
+      // Account number se PayTm QR
+     return `upi://pay?pa=${ACCOUNT_NUMBER}&am=${amt}&cu=INR`;
+    }
+    
+    if (selectedMethod === 'USDT') {
+      // Account number se USDT QR
+      return `upi://pay?pa=${ACCOUNT_NUMBER}&am=${amt}&cu=INR`;
+    }
+    
     return "";
   };
 
@@ -73,7 +89,7 @@ const Deposit = () => {
       {/* Header */}
       <div className="dps-header">
         <Link to="/">
-        <FaChevronLeft className="dps-back-icon" />
+          <FaChevronLeft className="dps-back-icon" />
         </Link>
         <h2 className="dps-title">Deposit</h2>
         <span className="dps-history-btn">History</span>
@@ -128,6 +144,10 @@ const Deposit = () => {
           </div>
           <div className="dps-qr-wrapper">
             <QRCodeCanvas value={getQRData()} size={160} />
+          </div>
+          {/* Account Number Display */}
+          <div className="dps-account-display">
+            <span className="dps-account-number">{ACCOUNT_NUMBER}</span>
           </div>
         </div>
       )}

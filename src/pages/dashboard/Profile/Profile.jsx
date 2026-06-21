@@ -53,10 +53,12 @@ const Profile = () => {
             <span>Deposit</span>
           </div>
             </Link>
+            <Link to="/Withdral">
           <div className="profile-action-item">
             <IoCloudUpload size={28} color="#2196f3" />
             <span>Withdraw</span>
           </div>
+          </Link>
           <div className="profile-action-item profile-badge-container">
             <FaTrophy size={28} color="#8bc34a" />
             <span>VIP</span>
